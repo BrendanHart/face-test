@@ -4,7 +4,7 @@ import imutils
 import os
 import time
 
-scale_values = [1.01, 1.3, 1.5]
+scale_values = [1.01, 1.1, 1.3, 1.5]
 
 def get_files(root_paths):
     paths = []

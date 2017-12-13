@@ -6,7 +6,7 @@ import os
 NUM_NEGATIVES = 800
 NUM_POSITIVES = 800
 
-scale_values = [1.01, 1.3, 1.5]
+scale_values = [1.01, 1.1, 1.3, 1.5]
 neighbour_values = [2, 3, 4, 5, 6]
 
 def get_files(root_paths):
@@ -115,6 +115,13 @@ for scale_val in scale_values:
 
             negatives_used += 1
 
-        print "HAAR RESULT: TP-"+str(h_true_positives)+" FP-"+str(h_false_positives)+" TN-"+str(h_true_negatives)+" FN-"+str(h_false_negatives)
-        print "LBP RESULT: TP-"+str(l_true_positives)+" FP-"+str(l_false_positives)+" TN-"+str(l_true_negatives)+" FN-"+str(l_false_negatives)
-        print "HOG RESULT: TP-"+str(g_true_positives)+" FP-"+str(g_false_positives)+" TN-"+str(g_true_negatives)+" FN-"+str(g_false_negatives)
+        h_precision = (float(h_true_positives)/float(h_true_positives+h_false_positives))
+        h_recall = (float(h_true_positives)/float(h_true_positives+h_false_negatives))
+        l_precision = (float(l_true_positives)/float(l_true_positives+l_false_positives))
+        l_recall = (float(l_true_positives)/float(l_true_positives+l_false_negatives))
+        g_precision = (float(g_true_positives)/float(g_true_positives+g_false_positives))
+        g_recall = (float(g_true_positives)/float(g_true_positives+g_false_negatives))
+
+        print "HAAR RESULT: " + str( float(2 * h_precision * h_recall) / float(h_precision + h_recall))
+        print "LBP RESULT: " + str( float(2 * l_precision * l_recall) / float(l_precision + l_recall))
+        print "HOG RESULT: " + str( float(2 * g_precision * g_recall) / float(g_precision + g_recall))
