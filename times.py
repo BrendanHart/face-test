@@ -5,7 +5,8 @@ import os
 import time
 
 scale_values = [1.01, 1.1, 1.3, 1.5]
-strides = [(4,4), (8,8), (16,16)]
+g_scales = [1.01, 1.05, 1.1, 1.2]
+strides = [(2,2), (4,4), (8,8)]
 neighbour_values = [2, 3, 4, 5, 6]
 
 def get_files(root_paths):
@@ -47,7 +48,7 @@ for scale_val in scale_values:
 
         print "SCALE " + str(scale_val) + " NEIGHBOURS " + str(neighbour_val) + " HAAR-" + str(h_time/5.0) + " LBP-" + str(l_time/5.0)
 
-for scale in scale_values:
+for scale in g_scales:
     for stride in strides:
         g_time = 0.0
         for i in range(5):

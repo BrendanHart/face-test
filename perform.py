@@ -6,8 +6,8 @@ import os
 NUM_NEGATIVES = 800
 NUM_POSITIVES = 800
 
-scale_values = [1.01, 1.1, 1.3, 1.5]
-strides = [(4,4), (8,8), (16,16)]
+scale_values = [1.01, 1.05, 1.1, 1.2]
+strides = [(2,2), (4,4), (8,8)]
 neighbour_values = [2, 3, 4, 5, 6]
 
 def get_files(root_paths):
@@ -158,7 +158,11 @@ for scale in scale_values:
 
             negatives_used += 1
 
-        g_precision = (float(g_true_positives)/float(g_true_positives+g_false_positives))
-        g_recall = (float(g_true_positives)/float(g_true_positives+g_false_negatives))
 
-        print "SCALE " + str(scale) + " STRIDE " + str(stride) + " HOG RESULT: " + str( float(2 * g_precision * g_recall) / float(g_precision + g_recall))
+
+        if g_true_positives == 0.0 or (g_true_positives + g_false_positives == 0) or (g_true_positives + g_false_negatives == 0):
+            print "SCALE " + str(scale) + " STRIDE " + str(stride) + " HOG RESULT: 0.0"
+        else:
+            g_precision = (float(g_true_positives)/float(g_true_positives+g_false_positives))
+            g_recall = (float(g_true_positives)/float(g_true_positives+g_false_negatives))
+            print "SCALE " + str(scale) + " STRIDE " + str(stride) + " HOG RESULT: " + str( float(2 * g_precision * g_recall) / float(g_precision + g_recall))
