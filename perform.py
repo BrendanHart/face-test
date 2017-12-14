@@ -161,4 +161,4 @@ for scale in scale_values:
         g_precision = (float(g_true_positives)/float(g_true_positives+g_false_positives))
         g_recall = (float(g_true_positives)/float(g_true_positives+g_false_negatives))
 
-        print "SCALE " + str(scale) + " STRIDE " + stride + " HOG RESULT: " + str( float(2 * g_precision * g_recall) / float(g_precision + g_recall))
+        print "SCALE " + str(scale) + " STRIDE " + str(stride) + " HOG RESULT: " + str( float(2 * g_precision * g_recall) / float(g_precision + g_recall))
